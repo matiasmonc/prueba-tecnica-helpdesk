@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Helpdesk.Business/Helpdesk.Business.csproj" Id="385b1121-aa1f-454c-9d13-96ee81b5b229" />
+  <Project Path="Helpdesk.Domain/Helpdesk.Domain.csproj" Id="4dbe55f0-be79-4b34-901d-555dc445c56e" />
+  <Project Path="Helpdesk.Infraestructure/Helpdesk.Infraestructure.csproj" Id="21b0ab87-944c-455c-87f5-ae33416f4655" />
+  <Project Path="Helpdesk/Helpdesk.csproj" Id="16faaeee-b154-46cb-8d56-6254b9c21ec9" />
+</Solution>
