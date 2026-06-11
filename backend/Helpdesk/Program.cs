@@ -14,7 +14,15 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(BusinessAssemblyMarker));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = "Helpdesk.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
+});
 
 builder.Services
     .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>))
