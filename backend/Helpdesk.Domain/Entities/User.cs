@@ -12,7 +12,7 @@ namespace Helpdesk.Domain.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        [Required, StringLength(500)]
+        [Required, StringLength(500), EmailAddress]
         public string Email { get; set; } = string.Empty;
         [Required, StringLength(255)]
         public string Password { get; set; } = string.Empty;
