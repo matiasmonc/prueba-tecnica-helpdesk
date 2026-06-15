@@ -3,7 +3,10 @@ using Helpdesk.Business.Services;
 using Helpdesk.Domain.Interfaces;
 using Helpdesk.Infraestructure.Data;
 using Helpdesk.Infraestructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +46,26 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddAuthentication(option =>
+{
+    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options => 
+    {
+        options.MapInboundClaims = false; // Evita que se mapeen automáticamente los claims estándar a los tipos de claim de Microsoft
+                                          // (esto es útil para mantener los nombres de claim originales)
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            ClockSkew = TimeSpan.Zero // Elimina el tiempo de tolerancia para la expiración del token
+        };
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,7 +78,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
