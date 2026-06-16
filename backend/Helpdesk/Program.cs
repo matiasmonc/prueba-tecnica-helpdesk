@@ -1,8 +1,10 @@
 using Helpdesk.Business;
+using Helpdesk.Business.Interfaces;
 using Helpdesk.Business.Services;
 using Helpdesk.Domain.Interfaces;
 using Helpdesk.Infraestructure.Data;
 using Helpdesk.Infraestructure.Repositories;
+using Helpdesk.Infraestructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -31,7 +33,8 @@ builder.Services
     .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>))
     .AddScoped<ITicketRepository, TicketRepository>()
     .AddScoped<ITicketService, TicketService>()
-    .AddScoped<ICommentRepository, CommentRepository>();
+    .AddScoped<ICommentRepository, CommentRepository>()
+    .AddScoped<IJwtManager, JwtManager>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
