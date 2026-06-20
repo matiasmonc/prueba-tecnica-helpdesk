@@ -9,6 +9,7 @@ namespace Helpdesk.Domain.Interfaces
     public interface IGenericRepository<T> where T : class
     {
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(Func<T, bool> Predicate);
         Task<T?> GetByIdAsync(object Id);
         Task InsertAsync(T Entity);
         Task UpdateAsync(T Entity);

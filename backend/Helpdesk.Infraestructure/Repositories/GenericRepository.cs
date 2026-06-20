@@ -24,7 +24,12 @@ namespace Helpdesk.Infraestructure.Repositories
         {
             return await _dbSet.ToListAsync();
         }
-        
+
+        public async Task<IEnumerable<T>> GetAllAsync(Func<T, bool> Predicate)
+        {
+            return await Task.FromResult(_dbSet.Where(Predicate).ToList());
+        }
+
         public async Task<T?> GetByIdAsync(object Id)
         {
             return await _dbSet.FindAsync(Id);

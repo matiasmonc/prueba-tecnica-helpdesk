@@ -34,7 +34,10 @@ builder.Services
     .AddScoped<ITicketRepository, TicketRepository>()
     .AddScoped<ITicketService, TicketService>()
     .AddScoped<ICommentRepository, CommentRepository>()
-    .AddScoped<IJwtManager, JwtManager>();
+    .AddScoped<IJwtManager, JwtManager>()
+    .AddScoped<IPasswordHasher, PasswordHasher>()
+    .AddScoped<IAuthService, AuthService>()
+    .AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -64,7 +67,7 @@ builder.Services.AddAuthentication(option =>
             ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!)),
             ClockSkew = TimeSpan.Zero // Elimina el tiempo de tolerancia para la expiración del token
         };
     });

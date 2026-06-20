@@ -9,11 +9,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Helpdesk.Domain\Helpdesk.Domain.csproj" />
-    <ProjectReference Include="..\Helpdesk.Infraestructure\Helpdesk.Infraestructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.1.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
   </ItemGroup>
 
 </Project>

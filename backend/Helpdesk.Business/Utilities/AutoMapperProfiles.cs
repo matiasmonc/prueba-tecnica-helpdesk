@@ -24,6 +24,11 @@ namespace Helpdesk.Business.DTOs.Utilities
             CreateMap<CreateCommentDTO, Comment>();
             CreateMap<Comment, CommentDTO>()
                 .ForMember(dto => dto.CreatorName, config => config.MapFrom(comment => comment.CreatedBy));
+
+            CreateMap<CreateUserDTO, User>();
+            CreateMap<User, UserDTO>()
+                .ForMember(dto => dto.DisplayName, config => config.MapFrom(user => user.DisplayName))
+                .ForMember(dto => dto.NameRol, config => config.MapFrom(user => user.Rol.Name));
         }
     }
 }
