@@ -1,7 +1,6 @@
 using Helpdesk.Business;
 using Helpdesk.Business.Interfaces;
 using Helpdesk.Business.Services;
-using Helpdesk.Domain.Interfaces;
 using Helpdesk.Infraestructure.Data;
 using Helpdesk.Infraestructure.Repositories;
 using Helpdesk.Infraestructure.Security;

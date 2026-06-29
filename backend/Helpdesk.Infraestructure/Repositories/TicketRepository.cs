@@ -1,5 +1,5 @@
 ﻿using Helpdesk.Domain.Entities;
-using Helpdesk.Domain.Interfaces;
+using Helpdesk.Business.Interfaces;
 using Helpdesk.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;

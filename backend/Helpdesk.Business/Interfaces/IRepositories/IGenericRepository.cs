@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Helpdesk.Domain.Interfaces
+namespace Helpdesk.Business.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
